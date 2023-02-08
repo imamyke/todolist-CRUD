@@ -5,9 +5,15 @@ const todoSchema = new Schema({
     type: String,
     required: true
   },
-  done: {
+  isDone: {
     type: Boolean,
     default: false
+  },
+  userId: {  // 加入關聯設定
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
   }
 })
 
