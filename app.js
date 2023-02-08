@@ -21,6 +21,14 @@ app.use(bodyParser.urlencoded({ extended: true })) // 用 app.use 規定每一�
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
+// 設定 express-session
+const session = require('express-session')
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
+
 // 總路由
 const routers = require('./routes')
 app.use(routers)
