@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
-const port = 3000
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+const port = process.env.PORT
 
 // Mongoose 連線
 require('./config/mongoose')
@@ -24,7 +27,7 @@ app.use(methodOverride('_method'))
 // 設定 express-session
 const session = require('express-session')
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
